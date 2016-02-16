@@ -91,7 +91,7 @@ button.btn.btn-default {
 .banner{
 	background: url(../images/banner.jpg) no-repeat 0px 0px;
 	background-size: cover;
-	min-height:700px;
+	min-height:400px;
 	position:relative;
 }
 .banner-title {
