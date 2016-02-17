@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html">Php</a></li>
+                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html">Centos</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">Golang</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>golang使用redis连接池</h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redis尽管速度很快，但资源始终有限。一般情况下，我们都会通过不断建立新的连接来提高其吞吐量。但是，当请求量巨大时，此时可能就会出现性能下降。因为大量的连接创建，关闭会消耗很多资源，系统会消耗大量资源，还有就是后来的很多连接由于获取不到资源而TIME_WAIT等等。为了解决这些问题，我们就要用到连接池了。连接池的思路就是初始化时我们建立指定数量的连接，并把这些连接保存起来，使用时取出，用完放回来，如果已有的连接不够用，那么建立新的连接，倘若连接数已超过最大限制数，那么就等待或干脆丢弃。</p>
+                                </br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里选了使用比较多的redigo来实现golang的redis连接池：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                  <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">redis</span>
+
+<span style="color:#800000; font-weight:bold; ">import</span> <span style="color:#808030; ">(</span>
+  redigo <span style="color:#800000; ">"</span><span style="color:#0000e6; ">github.com/garyburd/redigo/redis</span><span style="color:#800000; ">"</span>
+  <span style="color:#800000; ">"</span><span style="color:#0000e6; ">time</span><span style="color:#800000; ">"</span>
+<span style="color:#808030; ">)</span>
+
+type Redis <span style="color:#800000; font-weight:bold; ">struct</span> <span style="color:#800080; ">{</span>
+  Pool <span style="color:#808030; ">*</span>redigo<span style="color:#808030; ">.</span>Pool
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>r <span style="color:#808030; ">*</span>Redis<span style="color:#808030; ">)</span> Init<span style="color:#808030; ">(</span>path string<span style="color:#808030; ">,</span> password string<span style="color:#808030; ">)</span> error <span style="color:#800080; ">{</span>
+  r<span style="color:#808030; ">.</span>Pool <span style="color:#808030; ">=</span> <span style="color:#808030; ">&amp;</span>redigo<span style="color:#808030; ">.</span>Pool<span style="color:#800080; ">{</span>
+    <span style="color:#e34adc; ">colorMaxIdle:</span>     <span style="color:#008c00; ">50</span><span style="color:#808030; ">,</span>
+    <span style="color:#e34adc; ">colorIdleTimeout:</span> <span style="color:#008c00; ">60</span> <span style="color:#808030; ">*</span> time<span style="color:#808030; ">.</span>Second<span style="color:#808030; ">,</span>
+    <span style="color:#e34adc; ">colorDial:</span> func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>redigo<span style="color:#808030; ">.</span>Conn<span style="color:#808030; ">,</span> error<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+      c<span style="color:#808030; ">,</span> err <span style="color:#800080; ">:</span><span style="color:#808030; ">=</span> redigo<span style="color:#808030; ">.</span>Dial<span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">tcp</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> path<span style="color:#808030; ">)</span>
+      <span style="color:#800000; font-weight:bold; ">if</span> err <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> nil <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">return</span> nil<span style="color:#808030; ">,</span> err
+      <span style="color:#800080; ">}</span>
+      <span style="color:#800000; font-weight:bold; ">if</span> len<span style="color:#808030; ">(</span>password<span style="color:#808030; ">)</span> <span style="color:#808030; ">&gt;</span> <span style="color:#008c00; ">0</span> <span style="color:#800080; ">{</span>
+        <span style="color:#800000; font-weight:bold; ">if</span> _<span style="color:#808030; ">,</span> err <span style="color:#808030; ">=</span> c<span style="color:#808030; ">.</span>Do<span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">AUTH</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> password<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> err <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> nil <span style="color:#800080; ">{</span>
+          c<span style="color:#808030; ">.</span>Close<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
+          <span style="color:#800000; font-weight:bold; ">return</span> nil<span style="color:#808030; ">,</span> err
+        <span style="color:#800080; ">}</span>
+      <span style="color:#800080; ">}</span>
+      <span style="color:#800000; font-weight:bold; ">return</span> c<span style="color:#808030; ">,</span> err
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+    <span style="color:#e34adc; ">colorTestOnBorrow:</span> func<span style="color:#808030; ">(</span>c redigo<span style="color:#808030; ">.</span>Conn<span style="color:#808030; ">,</span> t time<span style="color:#808030; ">.</span>Time<span style="color:#808030; ">)</span> error <span style="color:#800080; ">{</span>
+      _<span style="color:#808030; ">,</span> err <span style="color:#800080; ">:</span><span style="color:#808030; ">=</span> c<span style="color:#808030; ">.</span>Do<span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#0000e6; ">PING</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span>
+      <span style="color:#800000; font-weight:bold; ">return</span> err
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> r<span style="color:#808030; ">.</span>Pool<span style="color:#808030; ">.</span>Get<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">.</span>Err<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>r <span style="color:#808030; ">*</span>Redis<span style="color:#808030; ">)</span> Conn<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> redigo<span style="color:#808030; ">.</span>Conn <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> r<span style="color:#808030; ">.</span>Pool<span style="color:#808030; ">.</span>Get<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>FEBRUARY 17, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>
