@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html">Php</a></li>
+                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html">Centos</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">Golang</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>golang的md5，base64，urlencode， hmac_sha1</h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用golang开发api时，这上面几个用到的机率很大，记下来，需要用时直接copy。</p>
+                                </br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD5：</p>
+                                </br>
+                               
+                                <div style=" width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">package encrypt
+
+<span style="color:#800000; font-weight:bold; ">import</span> <span style="color:#808030; ">(</span>
+  <span style="color:#800000; ">"</span><span style="color:#0000e6; ">crypto/md5</span><span style="color:#800000; ">"</span>
+  <span style="color:#800000; ">"</span><span style="color:#0000e6; ">encoding/hex</span><span style="color:#800000; ">"</span>
+<span style="color:#808030; ">)</span>
+
+func Md5<span style="color:#808030; ">(</span>str string<span style="color:#808030; ">)</span> string <span style="color:#800080; ">{</span>
+  h <span style="color:#800080; ">:</span><span style="color:#808030; ">=</span> md5<span style="color:#808030; ">.</span>New<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
+  h<span style="color:#808030; ">.</span>Write<span style="color:#808030; ">(</span><span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> hex<span style="color:#808030; ">.</span>EncodeToString<span style="color:#808030; ">(</span>h<span style="color:#808030; ">.</span>Sum<span style="color:#808030; ">(</span>nil<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+                                </pre></div>  
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base64：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">package encrypt
+
+<span style="color:#800000; font-weight:bold; ">import</span> <span style="color:#808030; ">(</span>
+  <span style="color:#800000; ">"</span><span style="color:#0000e6; ">encoding/base64</span><span style="color:#800000; ">"</span>
+<span style="color:#808030; ">)</span>
+
+func Base64Encode<span style="color:#808030; ">(</span>str string<span style="color:#808030; ">)</span> string <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> base64<span style="color:#808030; ">.</span>StdEncoding<span style="color:#808030; ">.</span>EncodeToString<span style="color:#808030; ">(</span><span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+func Base64Decode<span style="color:#808030; ">(</span>str string<span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>string<span style="color:#808030; ">,</span> error<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  data<span style="color:#808030; ">,</span> err <span style="color:#800080; ">:</span><span style="color:#808030; ">=</span> base64<span style="color:#808030; ">.</span>StdEncoding<span style="color:#808030; ">.</span>DecodeString<span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span>
+  <span style="color:#800000; font-weight:bold; ">if</span> err <span style="color:#808030; ">!</span><span style="color:#808030; ">=</span> nil <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#800000; ">"</span><span style="color:#800000; ">"</span><span style="color:#808030; ">,</span> err
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> string<span style="color:#808030; ">(</span>data<span style="color:#808030; ">)</span><span style="color:#808030; ">,</span> nil
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UrlEncode：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">package encrypt
+
+<span style="color:#800000; font-weight:bold; ">import</span> <span style="color:#808030; ">(</span>
+  <span style="color:#800000; ">"</span><span style="color:#0000e6; ">net/url</span><span style="color:#800000; ">"</span>
+<span style="color:#808030; ">)</span>
+
+func UrlEncode<span style="color:#808030; ">(</span>s string<span style="color:#808030; ">)</span> string <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> url<span style="color:#808030; ">.</span>QueryEscape<span style="color:#808030; ">(</span>s<span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+func UrlDecode<span style="color:#808030; ">(</span>s string<span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>string<span style="color:#808030; ">,</span> error<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> url<span style="color:#808030; ">.</span>QueryUnescape<span style="color:#808030; ">(</span>s<span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hmac_sha1：</p>
+                                </br>
+                                <div style=" width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">package encrypt
+
+import <span style="color:#808030; ">(</span>
+  <span style="color:#0000e6; ">"crypto/hmac"</span>
+  <span style="color:#0000e6; ">"crypto/sha1"</span>
+  <span style="color:#0000e6; ">"encoding/hex"</span>
+<span style="color:#808030; ">)</span>
+
+func HmacSha1<span style="color:#808030; ">(</span>str <span style="color:#400000; ">string</span><span style="color:#808030; ">,</span> <span style="color:#400000; ">key</span> <span style="color:#400000; ">string</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+  mac :<span style="color:#808030; ">=</span> hmac<span style="color:#808030; ">.</span>New<span style="color:#808030; ">(</span>sha1<span style="color:#808030; ">.</span>New<span style="color:#808030; ">,</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">(</span><span style="color:#400000; ">key</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+  mac<span style="color:#808030; ">.</span>Write<span style="color:#808030; ">(</span><span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">(</span>str<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#400000; ">hex</span><span style="color:#808030; ">.</span>EncodeToString<span style="color:#808030; ">(</span>mac<span style="color:#808030; ">.</span>Sum<span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">nil</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>FEBRUARY 18, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>
