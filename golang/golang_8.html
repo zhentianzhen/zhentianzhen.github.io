@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html">Php</a></li>
+                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html">Centos</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">Golang</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>protobuf的使用</h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protobuf使用示例</p>
+                                </br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我们需要安装protobuf：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">git <span style="color:#400000; ">clone</span> <span style="color:#005fd2; ">https</span>:<span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>github<span style="color:#808030; ">.</span>com<span style="color:#808030; ">/</span>google<span style="color:#808030; ">/</span>protobuf<span style="color:#808030; ">.</span>git
+cd protobuf
+<span style="color:#808030; ">.</span><span style="color:#0000e6; ">/autogen</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">sh</span>
+<span style="color:#808030; ">.</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">co</span>nfigure
+make &amp;&amp; make install
+                                </pre></div> 
+                                
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后我们定义一个消息结构：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>;
+
+enum MsgType <span style="color:#800080; ">{</span>
+  Normal       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>;  
+  Private      <span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span>;  
+  System       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">3</span>;  
+  BroadCast    <span style="color:#808030; ">=</span> <span style="color:#008c00; ">4</span>;  
+  Error        <span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span>;  
+  Shield       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">6</span>;  
+  CancelShield <span style="color:#808030; ">=</span> <span style="color:#008c00; ">7</span>;  
+  Offline      <span style="color:#808030; ">=</span> <span style="color:#008c00; ">8</span>;  
+  Apply        <span style="color:#808030; ">=</span> <span style="color:#008c00; ">9</span>;  
+  Status       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span>; 
+  Invite       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">11</span>; 
+  Room         <span style="color:#808030; ">=</span> <span style="color:#008c00; ">12</span>; 
+  Friend       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">13</span>; 
+  Custom       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">14</span>; 
+  Recent       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">15</span>; 
+  Corp         <span style="color:#808030; ">=</span> <span style="color:#008c00; ">16</span>; 
+  Tips         <span style="color:#808030; ">=</span> <span style="color:#008c00; ">17</span>; 
+<span style="color:#800080; ">}</span>
+
+<span style="color:#400000; ">message</span> Msg <span style="color:#800080; ">{</span>
+  required MsgType type        <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span> <span style="color:#808030; ">[</span><span style="color:#400000; ">default</span><span style="color:#808030; ">=</span>Normal<span style="color:#808030; ">]</span>; 
+  required <span style="color:#400000; ">string</span>  content     <span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span>;                      
+  optional <span style="color:#400000; ">string</span>  from        <span style="color:#808030; ">=</span> <span style="color:#008c00; ">3</span>;                      
+  optional <span style="color:#400000; ">string</span>  from_name   <span style="color:#808030; ">=</span> <span style="color:#008c00; ">4</span>;                       
+  optional <span style="color:#400000; ">string</span>  to          <span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span>;                      
+  optional <span style="color:#400000; ">string</span>  to_name     <span style="color:#808030; ">=</span> <span style="color:#008c00; ">6</span>;                       
+  optional <span style="color:#400000; ">string</span>  time        <span style="color:#808030; ">=</span> <span style="color:#008c00; ">7</span>;                      
+  optional <span style="color:#400000; ">string</span>  color       <span style="color:#808030; ">=</span> <span style="color:#008c00; ">8</span>;                      
+  optional <span style="color:#400000; ">string</span>  from_avatar <span style="color:#808030; ">=</span> <span style="color:#008c00; ">9</span>;                       
+  optional <span style="color:#400000; ">string</span>  to_avatar   <span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span>;                      
+  optional <span style="color:#400000; ">string</span>  vip         <span style="color:#808030; ">=</span> <span style="color:#008c00; ">11</span>;                     
+  optional <span style="color:#400000; ">string</span> roominfo     <span style="color:#808030; ">=</span> <span style="color:#008c00; ">12</span>;                     
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行如下语句，即可生成相应go文件：</p>
+                                </br>
+                                        <div style="width: 100%;">
+                                                <pre style="color:#000000;background:#ffffff;">protoc <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>go_out<span style="color:#808030; ">=</span><span style="color:#808030; ">.</span> <span style="color:#808030; ">*</span><span style="color:#808030; ">.</span>proto
+                                        </pre></div> 
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg.pb.go：</p>
+                                </br>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> Code generated by protoc<span style="color:#808030; ">-</span>gen<span style="color:#808030; ">-</span>go<span style="color:#808030; ">.</span>
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> <span style="color:#005fd2; ">source</span>: msg<span style="color:#808030; ">.</span>proto
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> DO NOT EDIT!
+
+<span style="color:#0000e6; ">/</span><span style="color:#808030; ">*</span><span style="color:#0000e6; "></span>
+<span style="color:#0000e6; ">Package main is a generated protocol buffer package</span><span style="color:#808030; ">.</span><span style="color:#0000e6; "></span>
+<span style="color:#0000e6; "></span>
+<span style="color:#0000e6; ">It is generated from these files:</span>
+<span style="color:#0000e6; ">0000e6msg</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">proto</span>
+<span style="color:#0000e6; "></span>
+<span style="color:#0000e6; ">It has these top-level messages:</span>
+<span style="color:#0000e6; ">0000e6Msg</span>
+<span style="color:#808030; ">*</span><span style="color:#800000; ">/</span>
+package <span style="color:#400000; ">main</span>
+
+import proto <span style="color:#0000e6; ">"github.com/golang/protobuf/proto"</span>
+import fmt <span style="color:#0000e6; ">"fmt"</span>
+import math <span style="color:#0000e6; ">"math"</span>
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> Reference imports to suppress errors <span style="color:#800000; font-weight:bold; ">if</span> they are <span style="color:#800000; font-weight:bold; ">not</span> otherwise used<span style="color:#808030; ">.</span>
+var _ <span style="color:#808030; ">=</span> proto<span style="color:#808030; ">.</span>Marshal
+var _ <span style="color:#808030; ">=</span> fmt<span style="color:#808030; ">.</span>Errorf
+var _ <span style="color:#808030; ">=</span> math<span style="color:#808030; ">.</span>Inf
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> This is a <span style="color:#400000; ">compile</span><span style="color:#808030; ">-</span>time assertion to <span style="color:#800000; font-weight:bold; ">ensure</span> that this generated <span style="color:#400000; ">file</span>
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> is compatible with the proto package it is being compiled against<span style="color:#808030; ">.</span>
+const _ <span style="color:#808030; ">=</span> proto<span style="color:#808030; ">.</span>ProtoPackageIsVersion1
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span> 
+type MsgType int32
+
+const <span style="color:#808030; ">(</span>
+  MsgType_Normal       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+  MsgType_Private      MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">2</span>
+  MsgType_System       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">3</span>
+  MsgType_BroadCast    MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">4</span>
+  MsgType_Error        MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">5</span>
+  MsgType_Shield       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">6</span>
+  MsgType_CancelShield MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">7</span>
+  MsgType_Offline      MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">8</span>
+  MsgType_Apply        MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">9</span>
+  MsgType_Status       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">10</span>
+  MsgType_Invite       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">11</span>
+  MsgType_Room         MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">12</span>
+  MsgType_Friend       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">13</span>
+  MsgType_Custom       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">14</span>
+  MsgType_Recent       MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">15</span>
+  MsgType_Corp         MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">16</span>
+  MsgType_Tips         MsgType <span style="color:#808030; ">=</span> <span style="color:#008c00; ">17</span>
+<span style="color:#808030; ">)</span>
+
+var MsgType_name <span style="color:#808030; ">=</span> <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span>int32<span style="color:#808030; ">]</span><span style="color:#400000; ">string</span><span style="color:#800080; ">{</span>
+  <span style="color:#008c00; ">1</span>:  <span style="color:#0000e6; ">"Normal"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">2</span>:  <span style="color:#0000e6; ">"Private"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">3</span>:  <span style="color:#0000e6; ">"System"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">4</span>:  <span style="color:#0000e6; ">"BroadCast"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">5</span>:  <span style="color:#0000e6; ">"Error"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">6</span>:  <span style="color:#0000e6; ">"Shield"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">7</span>:  <span style="color:#0000e6; ">"CancelShield"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">8</span>:  <span style="color:#0000e6; ">"Offline"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">9</span>:  <span style="color:#0000e6; ">"Apply"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">10</span>: <span style="color:#0000e6; ">"Status"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">11</span>: <span style="color:#0000e6; ">"Invite"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">12</span>: <span style="color:#0000e6; ">"Room"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">13</span>: <span style="color:#0000e6; ">"Friend"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">14</span>: <span style="color:#0000e6; ">"Custom"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">15</span>: <span style="color:#0000e6; ">"Recent"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">16</span>: <span style="color:#0000e6; ">"Corp"</span><span style="color:#808030; ">,</span>
+  <span style="color:#008c00; ">17</span>: <span style="color:#0000e6; ">"Tips"</span><span style="color:#808030; ">,</span>
+<span style="color:#800080; ">}</span>
+var MsgType_value <span style="color:#808030; ">=</span> <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>int32<span style="color:#800080; ">{</span>
+  <span style="color:#0000e6; ">"Normal"</span>:       <span style="color:#008c00; ">1</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Private"</span>:      <span style="color:#008c00; ">2</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"System"</span>:       <span style="color:#008c00; ">3</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"BroadCast"</span>:    <span style="color:#008c00; ">4</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Error"</span>:        <span style="color:#008c00; ">5</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Shield"</span>:       <span style="color:#008c00; ">6</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"CancelShield"</span>: <span style="color:#008c00; ">7</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Offline"</span>:      <span style="color:#008c00; ">8</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Apply"</span>:        <span style="color:#008c00; ">9</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Status"</span>:       <span style="color:#008c00; ">10</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Invite"</span>:       <span style="color:#008c00; ">11</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Room"</span>:         <span style="color:#008c00; ">12</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Friend"</span>:       <span style="color:#008c00; ">13</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Custom"</span>:       <span style="color:#008c00; ">14</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Recent"</span>:       <span style="color:#008c00; ">15</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Corp"</span>:         <span style="color:#008c00; ">16</span><span style="color:#808030; ">,</span>
+  <span style="color:#0000e6; ">"Tips"</span>:         <span style="color:#008c00; ">17</span><span style="color:#808030; ">,</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>x MsgType<span style="color:#808030; ">)</span> Enum<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">*</span>MsgType <span style="color:#800080; ">{</span>
+  p :<span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">new</span><span style="color:#808030; ">(</span>MsgType<span style="color:#808030; ">)</span>
+  <span style="color:#808030; ">*</span>p <span style="color:#808030; ">=</span> x
+  <span style="color:#800000; font-weight:bold; ">return</span> p
+<span style="color:#800080; ">}</span>
+func <span style="color:#808030; ">(</span>x MsgType<span style="color:#808030; ">)</span> <span style="color:#bb7977; font-weight:bold; ">String</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> proto<span style="color:#808030; ">.</span>EnumName<span style="color:#808030; ">(</span>MsgType_name<span style="color:#808030; ">,</span> int32<span style="color:#808030; ">(</span>x<span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+func <span style="color:#808030; ">(</span>x <span style="color:#808030; ">*</span>MsgType<span style="color:#808030; ">)</span> UnmarshalJSON<span style="color:#808030; ">(</span>data <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">)</span> error <span style="color:#800080; ">{</span>
+  <span style="color:#400000; ">value</span><span style="color:#808030; ">,</span> err :<span style="color:#808030; ">=</span> proto<span style="color:#808030; ">.</span>UnmarshalJSONEnum<span style="color:#808030; ">(</span>MsgType_value<span style="color:#808030; ">,</span> data<span style="color:#808030; ">,</span> <span style="color:#0000e6; ">"MsgType"</span><span style="color:#808030; ">)</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> err <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> err
+  <span style="color:#800080; ">}</span>
+  <span style="color:#808030; ">*</span>x <span style="color:#808030; ">=</span> MsgType<span style="color:#808030; ">(</span><span style="color:#400000; ">value</span><span style="color:#808030; ">)</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#800000; font-weight:bold; ">nil</span>
+}
+func <span style="color:#808030; ">(</span>MsgType<span style="color:#808030; ">)</span> EnumDescriptor<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">,</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span> <span style="color:#800000; font-weight:bold; ">return</span> fileDescriptor0<span style="color:#808030; ">,</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>int<span style="color:#800080; ">{</span><span style="color:#008c00; ">0</span><span style="color:#800080; ">}</span> <span style="color:#800080; ">}</span>
+
+type Msg struct <span style="color:#800080; ">{</span>
+  Type             <span style="color:#808030; ">*</span>MsgType <span style="color:#0000e6; ">`protobuf:"varint,1,req,name=type,enum=main.MsgType,def=1" json:"type,omitempty"`</span>
+  Content          <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,2,req,name=content" json:"content,omitempty"`</span>
+  From             <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,3,opt,name=from" json:"from,omitempty"`</span>
+  FromName         <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,4,opt,name=from_name" json:"from_name,omitempty"`</span>
+  To               <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,5,opt,name=to" json:"to,omitempty"`</span>
+  ToName           <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,6,opt,name=to_name" json:"to_name,omitempty"`</span>
+  <span style="color:#bb7977; font-weight:bold; ">Time</span>             <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,7,opt,name=time" json:"time,omitempty"`</span>
+  Color            <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,8,opt,name=color" json:"color,omitempty"`</span>
+  FromAvatar       <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,9,opt,name=from_avatar" json:"from_avatar,omitempty"`</span>
+  ToAvatar         <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,10,opt,name=to_avatar" json:"to_avatar,omitempty"`</span>
+  Vip              <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,11,opt,name=vip" json:"vip,omitempty"`</span>
+  Roominfo         <span style="color:#808030; ">*</span><span style="color:#400000; ">string</span>  <span style="color:#0000e6; ">`protobuf:"bytes,12,opt,name=roominfo" json:"roominfo,omitempty"`</span>
+  XXX_unrecognized <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte   <span style="color:#0000e6; ">`json:"-"`</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> Reset<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>                    <span style="color:#800080; ">{</span> <span style="color:#808030; ">*</span>m <span style="color:#808030; ">=</span> Msg<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span> <span style="color:#800080; ">}</span>
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> <span style="color:#bb7977; font-weight:bold; ">String</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span>            <span style="color:#800080; ">{</span> <span style="color:#800000; font-weight:bold; ">return</span> proto<span style="color:#808030; ">.</span>CompactTextString<span style="color:#808030; ">(</span>m<span style="color:#808030; ">)</span> <span style="color:#800080; ">}</span>
+func <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> ProtoMessage<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>               <span style="color:#800080; ">{</span><span style="color:#800080; ">}</span>
+func <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> Descriptor<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#808030; ">,</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span> <span style="color:#800000; font-weight:bold; ">return</span> fileDescriptor0<span style="color:#808030; ">,</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>int<span style="color:#800080; ">{</span><span style="color:#008c00; ">0</span><span style="color:#800080; ">}</span> <span style="color:#800080; ">}</span>
+
+const Default_Msg_Type MsgType <span style="color:#808030; ">=</span> MsgType_Normal
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetType<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> MsgType <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>Type <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>Type
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> Default_Msg_Type
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetContent<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>Content <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>Content
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetFrom<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>From <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>From
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetFromName<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>FromName <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>FromName
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetTo<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>To <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>To
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetToName<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>ToName <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>ToName
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetTime<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Time</span> <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Time</span>
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetColor<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>Color <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>Color
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetFromAvatar<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>FromAvatar <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>FromAvatar
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetToAvatar<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>ToAvatar <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>ToAvatar
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetVip<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>Vip <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>Vip
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func <span style="color:#808030; ">(</span>m <span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span> GetRoominfo<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">  if</span> m <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> &amp;&amp; m<span style="color:#808030; ">.</span>Roominfo <span style="color:#808030; ">!=</span> <span style="color:#800000; font-weight:bold; ">nil</span> <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">*</span>m<span style="color:#808030; ">.</span>Roominfo
+  <span style="color:#800080; ">}</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#0000e6; ">""</span>
+}
+
+func init<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  proto<span style="color:#808030; ">.</span>RegisterType<span style="color:#808030; ">(</span><span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>Msg<span style="color:#808030; ">)</span><span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">nil</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span> <span style="color:#0000e6; ">"main.Msg"</span><span style="color:#808030; ">)</span>
+  proto<span style="color:#808030; ">.</span>RegisterEnum<span style="color:#808030; ">(</span><span style="color:#0000e6; ">"main.MsgType"</span><span style="color:#808030; ">,</span> MsgType_name<span style="color:#808030; ">,</span> MsgType_value<span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+var fileDescriptor0 <span style="color:#808030; ">=</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>byte<span style="color:#800080; ">{</span>
+<span style="color:#0000e6; ">0000e6/</span><span style="color:#800000; ">/</span> <span style="color:#008c00; ">380</span> <span style="color:#400000; ">bytes</span> of a gzipped FileDescriptorProto
+  <span style="color:#008000; ">0x1f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x08</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x09</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x88</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x02</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xff</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x34</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x91</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xcf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x30</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x0c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x35</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xce</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xfc</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x58</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x48</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x44</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x70</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x60</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x09</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x38</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xcc</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x81</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x23</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x02</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x89</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x03</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x0b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x47</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x51</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x27</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5d</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x22</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x71</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x95</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x66</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x47</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x57</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x49</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x78</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xea</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xe7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xdf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x86</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x34</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x0e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x4c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa0</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xad</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xfb</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x37</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x83</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x81</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xde</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x43</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xae</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x51</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xab</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x9b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xec</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xdd</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x24</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x29</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x11</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xda</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xde</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb1</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x1f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x74</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xdf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x08</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x29</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x28</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x76</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x98</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xae</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9a</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xa7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x92</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x08</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xce</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x37</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xab</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x88</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x93</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x50</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc9</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xf7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x83</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x51</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x79</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x32</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x4a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x01</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x77</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x23</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x64</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x81</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd5</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x26</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x25</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x14</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x81</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x36</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x14</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9d</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x83</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x98</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x3b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x17</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x69</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x67</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xaf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xca</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x04</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe7</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x82</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xde</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xcd</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x17</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x57</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x55</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x40</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x22</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xb2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x50</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x30</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x14</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x78</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x31</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x11</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x17</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x3b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xaa</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5d</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xc2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x22</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x15</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x94</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x79</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xae</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x63</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x4f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x87</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x7f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x28</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x96</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x11</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x72</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x25</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x0e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xde</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc6</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x8e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x06</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x33</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x31</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x60</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x06</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x01</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xaa</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xcf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf5</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xb9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x53</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf1</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x3d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x52</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xea</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x35</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xfd</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x19</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xb7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x71</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x89</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xad</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xfa</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x85</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x14</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x47</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd7</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xf5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x19</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x2c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd5</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xed</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x38</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf6</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x57</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xac</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xab</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa0</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc3</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe3</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x84</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x20</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xfa</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xbb</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xd8</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x38</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x73</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x47</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x25</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe4</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x4d</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x5c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x12</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xf7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x42</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xbf</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x6b</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xdc</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x19</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x0f</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xa2</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xeb</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xc7</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x29</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x44</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x14</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xdd</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x98</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x36</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0xfe</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x34</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x7c</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x26</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xe9</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9a</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xfd</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x88</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x28</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xea</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xde</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x8e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x13</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x3e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xff</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x1f</span><span style="color:#808030; ">,</span>
+  <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xff</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0xff</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x07</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x30</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x9e</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x54</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x29</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x02</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span> <span style="color:#008000; ">0x00</span><span style="color:#808030; ">,</span>
+<span style="color:#800080; ">}</span>
+                                </pre></div>
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>FEBRUARY 19, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>
