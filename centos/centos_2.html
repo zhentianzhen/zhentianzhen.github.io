@@ -49,12 +49,12 @@ jQuery(document).ready(function($) {
                                 <ul class="nav navbar-nav navbar-left">
                                         <li><a href="../index.html">Home</a></li>
                                         <li><a href="../php.html">Php</a></li>
-                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
                                         <li><a href="../mysql.html">MySQL</a></li>
                                         <li><a href="../mongodb.html">MongoDB</a></li>
                                         <li><a href="../redis.html">Redis</a></li>
                                         <li><a href="../git.html">Git</a></li>
-                                        <li><a href="../centos.html">CentOS</a></li>
+                                        <li><a href="../centos.html" class="active">CentOS</a></li>
                                         <li><a href="../other.html">Other</a></li>
                                 </ul>	
                                 <div class="clearfix"> </div>
@@ -76,79 +76,51 @@ jQuery(document).ready(function($) {
                 <div class="work-title sngl-title">
                         <ol class="breadcrumb">
                                 <li><a href="../index.html">Home</a></li>
-                                <li class="active">Golang</li>
+                                <li class="active">CentOS</li>
                         </ol>
                 </div>
                 <div class="col-md-8 single-page-left">
                         <div class="single-page-info">
-                                <h5>golang defer的个人总结</h5>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;golang里defer是个神奇的东西，在代码里经常看到它的身影，因此有必要探究探究一下它。首先，我们要明确下defer的执行顺序，它是在return之前执行的：</p>
+                                <h5>高并发下系统参数调优</h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务器在高并发下部分系统参数调优：</p>
                                 </br>
                                 <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#696969; ">//修改openfile数量</span>
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
+vim <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>security<span style="color:#808030; ">/</span>limits<span style="color:#808030; ">.</span>conf
 
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">把以下内容写入文件尾部</span>
 
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    n<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>                   
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这儿的输出结果最终是1，原因呢就是return 0的执行并不是原子性的，这里的代码实际上相当于如下代码：</p>
-                                </br> <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+<span style="color:#808030; ">*</span> soft nofile <span style="color:#008c00; ">65536</span>
+<span style="color:#808030; ">*</span> hard nofile <span style="color:#008c00; ">65536</span>
+<span style="color:#808030; ">*</span> soft nproc unlimited
+<span style="color:#808030; ">*</span> hard nproc unlimited
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
+<span style="color:#696969; ">//部分网络参数修改</span>
 
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
+vim <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>sysctl<span style="color:#808030; ">.</span>conf
 
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    n<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; "></span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>          
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再来看看不同defer的执行顺序：</p>
-                                </br>
-                                <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">把以下内容写入文件尾部</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_max_tw_buckets <span style="color:#808030; ">=</span> <span style="color:#008c00; ">10000</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>ip_local_port_range <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1024</span> <span style="color:#008c00; ">65000</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_tw_recycle <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_tw_reuse <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_syncookies <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>core<span style="color:#808030; ">.</span>netdev_max_backlog <span style="color:#808030; ">=</span> <span style="color:#008c00; ">262144</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_max_orphans <span style="color:#808030; ">=</span> <span style="color:#008c00; ">262144</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_max_syn_backlog <span style="color:#808030; ">=</span> <span style="color:#008c00; ">262144</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_synack_retries <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_syn_retries <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_fin_timeout <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1</span>
+net<span style="color:#808030; ">.</span>ipv4<span style="color:#808030; ">.</span>tcp_keepalive_time <span style="color:#808030; ">=</span> <span style="color:#008c00; ">30</span>
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
-
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
-
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span><span style="color:#008c00; ">123</span><span style="color:#808030; ">)</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span><span style="color:#008c00; ">456</span><span style="color:#808030; ">)</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">1</span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行一下可以知道defer的执行顺序是由下向上执行的。</p>
+<span style="color:#004a43; ">#</span><span style="color:#004a43; ">再执行命令</span>
+sysctl <span style="color:#808030; ">-</span>p
+                                </pre></div> 
                                 <div class="comment-icons">
                                         <ul>
                                                 <li><span></span><a href="#">Golang</a> </li>
-                                                <li><span class="clndr"></span>FEBRUARY 17, 2016</li>
+                                                <li><span class="clndr"></span>FEBRUARY 22, 2016</li>
                                                 <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
                                         </ul>
                                 </div>

@@ -49,12 +49,12 @@ jQuery(document).ready(function($) {
                                 <ul class="nav navbar-nav navbar-left">
                                         <li><a href="../index.html">Home</a></li>
                                         <li><a href="../php.html">Php</a></li>
-                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
                                         <li><a href="../mysql.html">MySQL</a></li>
                                         <li><a href="../mongodb.html">MongoDB</a></li>
                                         <li><a href="../redis.html">Redis</a></li>
                                         <li><a href="../git.html">Git</a></li>
-                                        <li><a href="../centos.html">CentOS</a></li>
+                                        <li><a href="../centos.html" class="active">CentOS</a></li>
                                         <li><a href="../other.html">Other</a></li>
                                 </ul>	
                                 <div class="clearfix"> </div>
@@ -76,79 +76,46 @@ jQuery(document).ready(function($) {
                 <div class="work-title sngl-title">
                         <ol class="breadcrumb">
                                 <li><a href="../index.html">Home</a></li>
-                                <li class="active">Golang</li>
+                                <li class="active">CentOS</li>
                         </ol>
                 </div>
                 <div class="col-md-8 single-page-left">
                         <div class="single-page-info">
-                                <h5>golang defer的个人总结</h5>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;golang里defer是个神奇的东西，在代码里经常看到它的身影，因此有必要探究探究一下它。首先，我们要明确下defer的执行顺序，它是在return之前执行的：</p>
+                                <h5>centos7 防火墙</h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;centos7 常用防火墙命令：</p>
                                 </br>
                                 <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+                                        <pre style="color:#000000;background:#ffffff;">启动防火墙
+systemctl start firewalld
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
+关闭防火墙
+systemctl stop firewalld
 
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
+重启防火墙
+systemctl restart firewalld
 
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    n<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">0</span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>                   
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这儿的输出结果最终是1，原因呢就是return 0的执行并不是原子性的，这里的代码实际上相当于如下代码：</p>
-                                </br> <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+开启端口
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>add<span style="color:#808030; ">-</span>port<span style="color:#808030; ">=</span><span style="color:#008c00; ">8888</span><span style="color:#808030; ">/</span>tcp
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
+关闭端口
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#603000; ">remove</span><span style="color:#808030; ">-</span>port<span style="color:#808030; ">=</span><span style="color:#008c00; ">8888</span><span style="color:#808030; ">/</span>tcp
 
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
+列出所有信息
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>list<span style="color:#808030; ">-</span>all
 
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    n<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; "></span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>          
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再来看看不同defer的执行顺序：</p>
-                                </br>
-                                <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
+查看防火墙状态
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>state
 
-import <span style="color:#808030; ">(</span>
-  <span style="color:#0000e6; ">"fmt"</span>
-<span style="color:#808030; ">)</span>
+重启防火墙并保持状态
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>reload
 
-func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
-<span style="color:#800080; ">}</span>
-
-func test<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">(</span>n int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span><span style="color:#008c00; ">123</span><span style="color:#808030; ">)</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  defer func<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
-    fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span><span style="color:#008c00; ">456</span><span style="color:#808030; ">)</span>
-  <span style="color:#800080; ">}</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-  <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#008c00; ">1</span>
-<span style="color:#800080; ">}</span>
-                                </pre></div>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行一下可以知道defer的执行顺序是由下向上执行的。</p>
+重启防火墙不保持状态
+firewall<span style="color:#808030; ">-</span>cmd <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>complete<span style="color:#808030; ">-</span>reload
+                                </pre></div> 
                                 <div class="comment-icons">
                                         <ul>
                                                 <li><span></span><a href="#">Golang</a> </li>
-                                                <li><span class="clndr"></span>FEBRUARY 17, 2016</li>
+                                                <li><span class="clndr"></span>FEBRUARY 22, 2016</li>
                                                 <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
                                         </ul>
                                 </div>
