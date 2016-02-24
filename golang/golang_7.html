@@ -86,7 +86,7 @@ jQuery(document).ready(function($) {
                                 </br>
                                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序代码：</p>
                                 </br>
-                                <div style=" width: 100%;">
+                                <div style="width: 100%;">
                                         <pre style="color:#000000;background:#ffffff;">package <span style="color:#400000; ">main</span>
 
 import <span style="color:#808030; ">(</span>
@@ -97,6 +97,13 @@ import <span style="color:#808030; ">(</span>
 type SortKey struct <span style="color:#800080; ">{</span>
   Key  <span style="color:#400000; ">string</span>
   <span style="color:#bb7977; font-weight:bold; ">Data</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span><span style="color:#400000; ">string</span>
+<span style="color:#800080; ">}</span>
+
+type lessFunc func<span style="color:#808030; ">(</span>p1<span style="color:#808030; ">,</span> p2 <span style="color:#808030; ">*</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span> bool
+
+type SortKeys struct <span style="color:#800080; ">{</span>
+  <span style="color:#bb7977; font-weight:bold; ">Data</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span>
+  less <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span>lessFunc
 <span style="color:#800080; ">}</span>
 
 func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
@@ -131,6 +138,45 @@ func <span style="color:#400000; ">main</span><span style="color:#808030; ">(</s
   data <span style="color:#808030; ">=</span> append<span style="color:#808030; ">(</span>data<span style="color:#808030; ">,</span> <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span><span style="color:#400000; ">string</span><span style="color:#800080; ">{</span><span style="color:#0000e6; ">"id"</span>: <span style="color:#0000e6; ">"3"</span><span style="color:#808030; ">,</span> <span style="color:#0000e6; ">"name"</span>: <span style="color:#0000e6; ">"daisy"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
   data <span style="color:#808030; ">=</span> append<span style="color:#808030; ">(</span>data<span style="color:#808030; ">,</span> <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span><span style="color:#400000; ">string</span><span style="color:#800080; ">{</span><span style="color:#0000e6; ">"id"</span>: <span style="color:#0000e6; ">"7"</span><span style="color:#808030; ">,</span> <span style="color:#0000e6; ">"name"</span>: <span style="color:#0000e6; ">"tiffany"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
   fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>sortKey<span style="color:#808030; ">(</span>data<span style="color:#808030; ">,</span> <span style="color:#0000e6; ">"id"</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span>
+
+  ss :<span style="color:#808030; ">=</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#800080; ">{</span>
+    <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#800080; ">{</span>
+      <span style="color:#0000e6; ">"id"</span>:    <span style="color:#008c00; ">1</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"money"</span>: <span style="color:#008c00; ">100</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"name"</span>:  <span style="color:#0000e6; ">"jim"</span><span style="color:#808030; ">,</span>
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+    <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#800080; ">{</span>
+      <span style="color:#0000e6; ">"id"</span>:    <span style="color:#008c00; ">2</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"money"</span>: <span style="color:#008c00; ">100</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"name"</span>:  <span style="color:#0000e6; ">"ann"</span><span style="color:#808030; ">,</span>
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+    <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#800080; ">{</span>
+      <span style="color:#0000e6; ">"id"</span>:    <span style="color:#008c00; ">3</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"money"</span>: <span style="color:#008c00; ">80</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"name"</span>:  <span style="color:#0000e6; ">"ab"</span><span style="color:#808030; ">,</span>
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+    <span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#800080; ">{</span>
+      <span style="color:#0000e6; ">"id"</span>:    <span style="color:#008c00; ">4</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"money"</span>: <span style="color:#008c00; ">1000</span><span style="color:#808030; ">,</span>
+      <span style="color:#0000e6; ">"name"</span>:  <span style="color:#0000e6; ">"rust"</span><span style="color:#808030; ">,</span>
+    <span style="color:#800080; ">}</span><span style="color:#808030; ">,</span>
+  <span style="color:#800080; ">}</span>
+
+  idSort :<span style="color:#808030; ">=</span> func<span style="color:#808030; ">(</span>c1<span style="color:#808030; ">,</span> c2 <span style="color:#808030; ">*</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span> bool <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c1<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"id"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span>int<span style="color:#808030; ">)</span> &lt; <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c2<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"id"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span>int<span style="color:#808030; ">)</span>
+  <span style="color:#800080; ">}</span>
+  moneySort :<span style="color:#808030; ">=</span> func<span style="color:#808030; ">(</span>c1<span style="color:#808030; ">,</span> c2 <span style="color:#808030; ">*</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span> bool <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c1<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"money"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span>int<span style="color:#808030; ">)</span> &lt; <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c2<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"money"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span>int<span style="color:#808030; ">)</span>
+  <span style="color:#800080; ">}</span>
+  nameSort :<span style="color:#808030; ">=</span> func<span style="color:#808030; ">(</span>c1<span style="color:#808030; ">,</span> c2 <span style="color:#808030; ">*</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span> bool <span style="color:#800080; ">{</span>
+    <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c1<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"name"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span><span style="color:#400000; ">string</span><span style="color:#808030; ">)</span> &lt; <span style="color:#808030; ">(</span><span style="color:#808030; ">*</span>c2<span style="color:#808030; ">)</span><span style="color:#808030; ">[</span><span style="color:#0000e6; ">"name"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">.</span><span style="color:#808030; ">(</span><span style="color:#400000; ">string</span><span style="color:#808030; ">)</span>
+  <span style="color:#800080; ">}</span>
+
+  orderBy<span style="color:#808030; ">(</span>nameSort<span style="color:#808030; ">,</span> moneySort<span style="color:#808030; ">)</span><span style="color:#808030; ">.</span>Sort<span style="color:#808030; ">(</span>ss<span style="color:#808030; ">)</span>
+  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>ss<span style="color:#808030; ">)</span>
+
+  orderBy<span style="color:#808030; ">(</span>moneySort<span style="color:#808030; ">,</span> idSort<span style="color:#808030; ">)</span><span style="color:#808030; ">.</span>Sort<span style="color:#808030; ">(</span>ss<span style="color:#808030; ">)</span>
+  fmt<span style="color:#808030; ">.</span>Println<span style="color:#808030; ">(</span>ss<span style="color:#808030; ">)</span>
 <span style="color:#800080; ">}</span>
 
 func sortKey<span style="color:#808030; ">(</span>data <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span><span style="color:#400000; ">string</span><span style="color:#808030; ">,</span> <span style="color:#400000; ">key</span> <span style="color:#400000; ">string</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span><span style="color:#400000; ">string</span> <span style="color:#800080; ">{</span>
@@ -150,7 +196,39 @@ func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</sp
 func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</span>SortKey<span style="color:#808030; ">)</span> Less<span style="color:#808030; ">(</span>i int<span style="color:#808030; ">,</span> j int<span style="color:#808030; ">)</span> bool <span style="color:#800080; ">{</span>
   <span style="color:#800000; font-weight:bold; ">return</span> s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>s<span style="color:#808030; ">.</span>Key<span style="color:#808030; ">]</span> &lt; s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">[</span>s<span style="color:#808030; ">.</span>Key<span style="color:#808030; ">]</span>
 <span style="color:#800080; ">}</span>
-                                </pre></div> 
+
+func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</span>SortKeys<span style="color:#808030; ">)</span> Sort<span style="color:#808030; ">(</span>data <span style="color:#808030; ">[</span><span style="color:#808030; ">]</span><span style="color:#400000; ">map</span><span style="color:#808030; ">[</span><span style="color:#400000; ">string</span><span style="color:#808030; ">]</span>interface<span style="color:#800080; ">{</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span> <span style="color:#808030; ">=</span> data
+  <span style="color:#400000; ">sort</span><span style="color:#808030; ">.</span>Sort<span style="color:#808030; ">(</span>s<span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+func orderBy<span style="color:#808030; ">(</span>less <span style="color:#808030; ">.</span><span style="color:#808030; ">.</span><span style="color:#808030; ">.</span>lessFunc<span style="color:#808030; ">)</span> <span style="color:#808030; ">*</span>SortKeys <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> &amp;SortKeys<span style="color:#800080; ">{</span><span style="color:#005fd2; ">less</span>: less<span style="color:#800080; ">}</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</span>SortKeys<span style="color:#808030; ">)</span> Len<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> int <span style="color:#800080; ">{</span>
+  <span style="color:#800000; font-weight:bold; ">return</span> len<span style="color:#808030; ">(</span>s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">)</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</span>SortKeys<span style="color:#808030; ">)</span> Swap<span style="color:#808030; ">(</span>i<span style="color:#808030; ">,</span> j int<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span> <span style="color:#808030; ">=</span> s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span>
+<span style="color:#800080; ">}</span>
+
+func <span style="color:#808030; ">(</span>s <span style="color:#808030; ">*</span>SortKeys<span style="color:#808030; ">)</span> Less<span style="color:#808030; ">(</span>i<span style="color:#808030; ">,</span> j int<span style="color:#808030; ">)</span> bool <span style="color:#800080; ">{</span>
+  p<span style="color:#808030; ">,</span> q :<span style="color:#808030; ">=</span> &amp;s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>i<span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> &amp;s<span style="color:#808030; ">.</span><span style="color:#bb7977; font-weight:bold; ">Data</span><span style="color:#808030; ">[</span>j<span style="color:#808030; ">]</span>
+  var k int
+<span style="color:#800000; font-weight:bold; ">    for</span> k <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span>; k &lt; len<span style="color:#808030; ">(</span>s<span style="color:#808030; ">.</span>less<span style="color:#808030; ">)</span><span style="color:#808030; ">-</span><span style="color:#008c00; ">1</span>; k<span style="color:#808030; ">+</span><span style="color:#808030; ">+</span> <span style="color:#800080; ">{</span>
+    less :<span style="color:#808030; ">=</span> s<span style="color:#808030; ">.</span>less<span style="color:#808030; ">[</span>k<span style="color:#808030; ">]</span>
+    switch <span style="color:#800080; ">{</span>
+<span style="color:#800000; font-weight:bold; ">      case</span> less<span style="color:#808030; ">(</span>p<span style="color:#808030; ">,</span> q<span style="color:#808030; ">)</span>:
+      <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#800000; font-weight:bold; ">      case</span> less<span style="color:#808030; ">(</span>q<span style="color:#808030; ">,</span> p<span style="color:#808030; ">)</span>:
+      <span style="color:#800000; font-weight:bold; ">return</span> <span style="color:#800000; font-weight:bold; ">false</span>
+    }
+  }
+  <span style="color:#800000; font-weight:bold; ">return</span> s<span style="color:#808030; ">.</span>less<span style="color:#808030; ">[</span>k<span style="color:#808030; ">]</span><span style="color:#808030; ">(</span>p<span style="color:#808030; ">,</span> q<span style="color:#808030; ">)</span>
+}
+                                </pre></div>                             
                                 <div class="comment-icons">
                                         <ul>
                                                 <li><span></span><a href="#">Golang</a> </li>
