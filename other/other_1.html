@@ -54,8 +54,8 @@ jQuery(document).ready(function($) {
                                         <li><a href="../mongodb.html">MongoDB</a></li>
                                         <li><a href="../redis.html">Redis</a></li>
                                         <li><a href="../git.html">Git</a></li>
-                                        <li><a href="../centos.html" class="active">CentOS</a></li>
-                                        <li><a href="../other.html">Other</a></li>
+                                        <li><a href="../centos.html" >CentOS</a></li>
+                                        <li><a href="../other.html" class="active">Other</a></li>
                                 </ul>	
                                 <div class="clearfix"> </div>
                         </div>
@@ -76,42 +76,68 @@ jQuery(document).ready(function($) {
                 <div class="work-title sngl-title">
                         <ol class="breadcrumb">
                                 <li><a href="../index.html">Home</a></li>
-                                <li class="active">CentOS</li>
+                                <li class="active">Other</li>
                         </ol>
                 </div>
                 <div class="col-md-8 single-page-left">
                         <div class="single-page-info">
-                                <h5>禁用ssh口令登录</h5>
-                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;禁用ssh口令登录，改为密钥登录步骤：</p>
-                                </br>
-                                <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">vim <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>ssh<span style="color:#808030; ">/</span>sshd_config
+                                <h5>kibana常用查询语法</h5>
+                                <div style=" width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;">查找所有包含200的数据：
+<span style="color:#008c00; ">200</span>
 
-<span style="color:#004a43; ">#</span><span style="color:#004a43; ">将对应参数修改为如下所示</span>
+查找所有status为200的数据：
+<span style="color:#005fd2; ">status</span>:<span style="color:#008c00; ">200</span>
 
-RSAAuthentication yes
-PubkeyAuthentication yes
-ChallengeResponseAuthentication no
-PasswordAuthentication no
-UseLogin yes
-UsePAM no
+查找所有status区间在200<span style="color:#808030; ">-</span>300的数据：
+<span style="color:#005fd2; ">status</span>:<span style="color:#808030; ">[</span><span style="color:#008c00; ">200</span> TO <span style="color:#008c00; ">300</span><span style="color:#808030; ">]</span>
 
-<span style="color:#004a43; ">#</span><span style="color:#004a43; ">登录将用于进行密钥登录的服务器</span>
+查找所有status为200且source为text的数据：
+<span style="color:#005fd2; ">status</span>:<span style="color:#008c00; ">200</span> AND <span style="color:#005fd2; ">source</span>:text
 
-cat <span style="color:#808030; ">~</span><span style="color:#808030; ">/</span><span style="color:#808030; ">.</span>ssh<span style="color:#808030; ">/</span>id_rsa<span style="color:#808030; ">.</span>pub
+查找所有status为200且source为text或file的数据：
+<span style="color:#005fd2; ">status</span>:<span style="color:#008c00; ">200</span> AND <span style="color:#808030; ">(</span><span style="color:#005fd2; ">source</span>:text OR <span style="color:#005fd2; ">source</span>:<span style="color:#400000; ">file</span><span style="color:#808030; ">)</span>
 
-<span style="color:#004a43; ">#</span><span style="color:#004a43; ">将内容添加到被登录服务器里</span>
+精确查找姓名叫某某的数据：
+<span style="color:#005fd2; ">name</span>:<span style="color:#005fd2; ">"某某"</span>
 
-echo <span style="color:#800000; ">"</span><span style="color:#0000e6; ">内容</span><span style="color:#800000; ">"</span> <span style="color:#808030; ">&gt;</span><span style="color:#808030; ">&gt;</span> <span style="color:#808030; ">~</span><span style="color:#808030; ">/</span><span style="color:#808030; ">.</span>ssh<span style="color:#808030; ">/</span>authorized_keys
+数据必须包含name字段：
+<span style="color:#005fd2; ">_exists_</span>:<span style="color:#400000; ">name</span>
 
-<span style="color:#004a43; ">#</span><span style="color:#004a43; ">重启服务</span>
+数据不能包含有name字段：
+<span style="color:#005fd2; ">_missing_</span>:<span style="color:#400000; ">name</span>
 
-systemctl  restart sshd<span style="color:#808030; ">.</span>service
-                                </pre></div> 
+通配符匹配<span style="color:#808030; ">(</span>? 匹配单个字符<span style="color:#808030; ">*</span> 匹配0到多个字符；? <span style="color:#808030; ">*</span> 不能用作第一个字符，例如： ?text <span style="color:#808030; ">*</span>text<span style="color:#808030; ">)</span>：
+te?x te<span style="color:#808030; ">*</span>t
+
+正则匹配：
+<span style="color:#005fd2; ">mesg</span>:<span style="color:#808030; ">/</span>mes<span style="color:#800080; ">{</span><span style="color:#008c00; ">2</span><span style="color:#800080; ">}</span>ages<span style="color:#808030; ">?</span><span style="color:#005fd2; ">/</span>
+<span style="color:#005fd2; "></span>
+模糊搜索：
+<span style="color:#005fd2; ">~ :在一个单词后面加上 ~ 启用模糊搜索</span>
+<span style="color:#005fd2; ">first~ 也能匹配到 frist</span>
+<span style="color:#005fd2; ">还可以指定需要多少相似度</span>
+<span style="color:#005fd2; ">cromm~0</span><span style="color:#808030; ">.</span><span style="color:#005fd2; ">3 会匹配到 from 和 chrome</span>
+<span style="color:#005fd2; ">数值范围0</span><span style="color:#808030; ">.</span><span style="color:#005fd2; ">0 ~ 1</span><span style="color:#808030; ">.</span><span style="color:#005fd2; ">0，默认0</span><span style="color:#808030; ">.</span><span style="color:#005fd2; ">5，越大越接近搜索的原始值</span>
+<span style="color:#005fd2; "></span>
+近似搜索：
+<span style="color:#005fd2; ">在短语后面加上 ~ </span>
+<span style="color:#005fd2; ">"select where"~3 表示 select 和 where 中间隔着3个单词以内</span>
+<span style="color:#005fd2; "></span>
+范围搜索：
+<span style="color:#005fd2; ">数值和时间类型的字段可以对某一范围进行查询</span>
+<span style="color:#005fd2; ">length:</span><span style="color:#808030; ">[</span><span style="color:#005fd2; ">100 TO 200</span><span style="color:#808030; ">]</span><span style="color:#005fd2; "> </span>
+<span style="color:#005fd2; ">date:{"now-6h" TO "now"} </span>
+<span style="color:#808030; ">[</span><span style="color:#005fd2; "> </span><span style="color:#808030; ">]</span><span style="color:#005fd2; "> 表示端点数值包含在范围内，</span><span style="color:#808030; ">{</span><span style="color:#008c00; "> </span><span style="color:#808030; ">}</span><span style="color:#005fd2; "> 表示端点数值不包含在范围内</span>
+<span style="color:#005fd2; "></span>
+转义特殊字符：
+<span style="color:#808030; ">+</span><span style="color:#005fd2; "> - &amp;&amp; </span><span style="color:#800080; ">|</span><span style="color:#800080; ">|</span><span style="color:#005fd2; "> ! </span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#005fd2; "> {} </span><span style="color:#808030; ">[</span><span style="color:#005fd2; ">] </span><span style="color:#808030; ">^</span><span style="color:#005fd2; ">" ~ * ? : </span><span style="color:#0f69ff; ">\ </span><span style="color:#005fd2; "></span>
+<span style="color:#005fd2; ">以上字符当作值搜索的时候需要用 </span><span style="color:#0f69ff; ">\ </span><span style="color:#005fd2; ">转义</span>
+                                </pre></div>                     
                                 <div class="comment-icons">
                                         <ul>
-                                                <li><span></span><a href="#">CentOS</a> </li>
-                                                <li><span class="clndr"></span>FEBRUARY 22, 2016</li>
+                                                <li><span></span><a href="#">Other</a> </li>
+                                                <li><span class="clndr"></span>FEBRUARY 24, 2016</li>
                                                 <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
                                         </ul>
                                 </div>
