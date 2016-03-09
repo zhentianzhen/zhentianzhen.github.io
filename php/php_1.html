@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html" class="active">Php</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html" >CentOS</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">Php</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>php-fpm.conf重要参数解析</h5>
+                                <div style=" width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#400000; ">pid</span> <span style="color:#808030; ">=</span> <span style="color:#400000; ">run</span><span style="color:#808030; ">/</span>php<span style="color:#808030; ">-</span>fpm<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+<span style="color:#696969; ">#pid设置，默认在安装目录中的var/run/php-fpm.pid，建议开启</span>
+  
+error_log <span style="color:#808030; ">=</span> log<span style="color:#808030; ">/</span>php<span style="color:#808030; ">-</span>fpm<span style="color:#808030; ">.</span>log
+<span style="color:#696969; ">#错误日志，默认在安装目录中的var/log/php-fpm.log</span>
+  
+log_level <span style="color:#808030; ">=</span> notice
+<span style="color:#696969; ">#错误级别. 可用级别为: alert（必须立即处理）, error（错误情况）, warning（警告情况）, notice（一般重要信息）, debug（调试信息）. 默认: notice.</span>
+  
+emergency_restart_threshold <span style="color:#808030; ">=</span> <span style="color:#008c00; ">60</span>
+emergency_restart_interval <span style="color:#808030; ">=</span> 60s
+<span style="color:#696969; ">#表示在emergency_restart_interval所设值内出现SIGSEGV或者SIGBUS错误的php-cgi进程数如果超过 emergency_restart_threshold个，php-fpm就会优雅重启。这两个选项一般保持默认值。</span>
+  
+process_control_timeout <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span>
+<span style="color:#696969; ">#设置子进程接受主进程复用信号的超时时间. 可用单位: s(秒), m(分), h(小时), 或者 d(天) 默认单位: s(秒). 默认值: 0.</span>
+  
+daemonize <span style="color:#808030; ">=</span> yes
+<span style="color:#696969; ">#后台执行fpm,默认值为yes，如果为了调试可以改为no。在FPM中，可以使用不同的设置来运行多个进程池。 这些设置可以针对每个进程池单独设置。</span>
+  
+listen <span style="color:#808030; ">=</span> <span style="color:#008000; ">127.0</span><span style="color:#808030; ">.</span><span style="color:#008000; ">0.1</span>:<span style="color:#005fd2; ">9000</span>
+<span style="color:#696969; ">#fpm监听端口，即nginx中php处理的地址，一般默认值即可。可用格式为: 'ip:port', 'port', '/path/to/unix/socket'. 每个进程池都需要设置.</span>
+  
+listen<span style="color:#808030; ">.</span>backlog <span style="color:#808030; ">=</span> <span style="color:#808030; ">-</span><span style="color:#008c00; ">1</span>
+<span style="color:#696969; ">#backlog数，-1表示无限制，由操作系统决定，此行注释掉就行。backlog含义参考：http://</span><span style="color:#5555dd; ">www.3gyou.cc/?p=41</span>
+  
+listen<span style="color:#808030; ">.</span>allowed_clients <span style="color:#808030; ">=</span> <span style="color:#008000; ">127.0</span><span style="color:#808030; ">.</span><span style="color:#008000; ">0.1</span>
+<span style="color:#696969; ">#允许访问FastCGI进程的IP，设置any为不限制IP，如果要设置其他主机的nginx也能访问这台FPM进程，listen处要设置成本地可被访问的IP。默认值是any。每个地址是用逗号分隔. 如果没有设置或者为空，则允许任何服务器请求连接</span>
+  
+listen<span style="color:#808030; ">.</span><span style="color:#400000; ">owner</span> <span style="color:#808030; ">=</span> www
+listen<span style="color:#808030; ">.</span><span style="color:#400000; ">group</span> <span style="color:#808030; ">=</span> www
+listen<span style="color:#808030; ">.</span><span style="color:#400000; ">mode</span> <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0666</span>
+<span style="color:#696969; ">#unix socket设置选项，如果使用tcp方式访问，这里注释即可。</span>
+  
+user <span style="color:#808030; ">=</span> www
+<span style="color:#400000; ">group</span> <span style="color:#808030; ">=</span> www
+<span style="color:#696969; ">#启动进程的帐户和组</span>
+  
+pm <span style="color:#808030; ">=</span> dynamic <span style="color:#696969; ">#对于专用服务器，pm可以设置为static。</span>
+<span style="color:#696969; ">#如何控制子进程，选项有static和dynamic。如果选择static，则由pm.max_children指定固定的子进程数。如果选择dynamic，则由下开参数决定：</span>
+pm<span style="color:#808030; ">.</span>max_children <span style="color:#696969; ">#，子进程最大数</span>
+pm<span style="color:#808030; ">.</span>start_servers <span style="color:#696969; ">#，启动时的进程数</span>
+pm<span style="color:#808030; ">.</span>min_spare_servers <span style="color:#696969; ">#，保证空闲进程数最小值，如果空闲进程小于此值，则创建新的子进程</span>
+pm<span style="color:#808030; ">.</span>max_spare_servers <span style="color:#696969; ">#，保证空闲进程数最大值，如果空闲进程大于此值，此进行清理</span>
+  
+pm<span style="color:#808030; ">.</span>max_requests <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1000</span>
+<span style="color:#696969; ">#设置每个子进程重生之前服务的请求数. 对于可能存在内存泄漏的第三方模块来说是非常有用的. 如果设置为 '0' 则一直接受请求. 等同于 PHP_FCGI_MAX_REQUESTS 环境变量. 默认值: 0.</span>
+  
+pm<span style="color:#808030; ">.</span>status_path <span style="color:#808030; ">=</span><span style="color:#0000e6; "> /status</span>
+<span style="color:#0000e6; ">#FPM状态页面的网址</span><span style="color:#808030; ">.</span><span style="color:#0000e6; "> 如果没有设置, 则无法访问状态页面</span><span style="color:#808030; ">.</span><span style="color:#0000e6; "> 默认值: none</span><span style="color:#808030; ">.</span><span style="color:#0000e6; "> munin监控会使用到</span>
+<span style="color:#0000e6; ">&nbsp;&nbsp;</span>
+<span style="color:#0000e6; ">ping</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">path = </span><span style="color:#800000; ">/</span>ping
+<span style="color:#696969; ">#FPM监控页面的ping网址. 如果没有设置, 则无法访问ping页面. 该页面用于外部检测FPM是否存活并且可以响应请求. 请注意必须以斜线开头 (/)。</span>
+  
+ping<span style="color:#808030; ">.</span>response <span style="color:#808030; ">=</span> pong
+<span style="color:#696969; ">#用于定义ping请求的返回相应. 返回为 HTTP 200 的 text/plain 格式文本. 默认值: pong.</span>
+  
+request_terminate_timeout <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span>
+<span style="color:#696969; ">#设置单个请求的超时中止时间. 该选项可能会对php.ini设置中的'max_execution_time'因为某些特殊原因没有中止运行的脚本有用. 设置为 '0' 表示 'Off'.当经常出现502错误时可以尝试更改此选项。</span>
+  
+request_slowlog_timeout <span style="color:#808030; ">=</span> 10s
+<span style="color:#696969; ">#当一个请求该设置的超时时间后，就会将对应的PHP调用堆栈信息完整写入到慢日志中. 设置为 '0' 表示 'Off'</span>
+  
+slowlog <span style="color:#808030; ">=</span> log<span style="color:#808030; ">/</span>$pool<span style="color:#808030; ">.</span>log<span style="color:#808030; ">.</span>slow
+<span style="color:#696969; ">#慢请求的记录日志,配合request_slowlog_timeout使用</span>
+  
+rlimit_files <span style="color:#808030; ">=</span> <span style="color:#008c00; ">1024</span>
+<span style="color:#696969; ">#设置文件打开描述符的rlimit限制. 默认值: 系统定义值默认可打开句柄是1024，可使用 ulimit -n查看，ulimit -n 2048修改。</span>
+  
+rlimit_core <span style="color:#808030; ">=</span> <span style="color:#008c00; ">0</span>
+<span style="color:#696969; ">#设置核心rlimit最大限制值. 可用值: 'unlimited' 、0或者正整数. 默认值: 系统定义值.</span>
+  
+<span style="color:#400000; ">chroot</span> <span style="color:#808030; ">=</span>
+<span style="color:#696969; ">#启动时的Chroot目录. 所定义的目录需要是绝对路径. 如果没有设置, 则chroot不被使用.</span>
+  
+<span style="color:#400000; ">chdir</span> <span style="color:#808030; ">=</span>
+<span style="color:#696969; ">#设置启动目录，启动时会自动Chdir到该目录. 所定义的目录需要是绝对路径. 默认值: 当前目录，或者/目录（chroot时）</span>
+  
+catch_workers_output <span style="color:#808030; ">=</span> yes
+<span style="color:#696969; ">#重定向运行过程中的stdout和stderr到主要的错误日志文件中. 如果没有设置, stdout 和 stderr 将会根据FastCGI的规则被重定向到 /dev/null . 默认值: 空.</span>
+                                </pre></div>  
+                                <h5>常见错误及解决办法整理</h5>
+                                <div style=" width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#5f5035; background:#ffffff; "></span><span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#008c00; background:#ffffff; ">1</span><span style="color:#808030; background:#ffffff; ">,</span><span style="color:#000000; background:#ffffff; ">request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。</span>
+<span style="color:#000000; background:#ffffff; ">如果file_get_contents请求的远程资源如果反应过慢，file_get_contents就会一直卡在那里不会超时，我们知道php</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">ini 里面max_execution_time 可以设置 PHP 脚本的最大执行时间，但是，在 php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">cgi</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#000000; background:#ffffff; ">php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">fpm</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#000000; background:#ffffff; "> 中，该参数不会起效。真正能够控制 PHP 脚本最大执行时间的是 php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">fpm</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">conf 配置文件中的request_terminate_timeout参数。</span>
+<span style="color:#000000; background:#ffffff; ">request_terminate_timeout默认值为 </span><span style="color:#008c00; background:#ffffff; ">0</span><span style="color:#000000; background:#ffffff; "> 秒，也就是说，PHP 脚本会一直执行下去。这样，当所有的 php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">cgi 进程都卡在 </span><span style="color:#400000; background:#ffffff; ">file_get_contents</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#000000; background:#ffffff; "> 函数时，这台 Nginx</span><span style="color:#808030; background:#ffffff; ">+</span><span style="color:#000000; background:#ffffff; ">PHP 的 WebServer 已经无法再处理新的 PHP 请求了，Nginx 将给用户返回“</span><span style="color:#008c00; background:#ffffff; ">502</span><span style="color:#000000; background:#ffffff; "> Bad Gateway”。修改该参数，设置一个 PHP 脚本最大执行时间是必要的，但是，治标不治本。例如改成 30s，如果发生 </span><span style="color:#400000; background:#ffffff; ">file_get_contents</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#000000; background:#ffffff; "> 获取网页内容较慢的情况，这就意味着 </span><span style="color:#008c00; background:#ffffff; ">150</span><span style="color:#000000; background:#ffffff; "> 个 php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">cgi 进程，每秒钟只能处理 </span><span style="color:#008c00; background:#ffffff; ">5</span><span style="color:#000000; background:#ffffff; "> 个请求，WebServer 同样很难避免</span><span style="color:#0000e6; background:#ffffff; ">"502 Bad Gateway"</span><span style="color:#000000; background:#ffffff; ">。解决办法是request_terminate_timeout设置为10s或者一个合理的值，或者给file_get_contents加一个超时参数。</span>
+<span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#797997; background:#ffffff; ">$ctx</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#808030; background:#ffffff; ">=</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#400000; background:#ffffff; ">stream_context_create</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#800000; background:#ffffff; font-weight:bold; ">array</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#000000; background:#ffffff; ">  </span>
+<span style="color:#000000; background:#ffffff; ">&nbsp;&nbsp;&nbsp;</span><span style="color:#0000e6; background:#ffffff; ">'http'</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#808030; background:#ffffff; ">=</span><span style="color:#808030; background:#ffffff; ">&gt;</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#800000; background:#ffffff; font-weight:bold; ">array</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#000000; background:#ffffff; ">  </span>
+<span style="color:#000000; background:#ffffff; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#0000e6; background:#ffffff; ">'timeout'</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#808030; background:#ffffff; ">=</span><span style="color:#808030; background:#ffffff; ">&gt;</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#008c00; background:#ffffff; ">10</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#696969; background:#ffffff; ">//设置一个超时时间，单位为秒  </span><span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#000000; background:#ffffff; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#000000; background:#ffffff; ">  </span>
+<span style="color:#000000; background:#ffffff; ">&nbsp;&nbsp;&nbsp;</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#000000; background:#ffffff; ">  </span>
+<span style="color:#808030; background:#ffffff; ">)</span><span style="color:#800080; background:#ffffff; ">;</span><span style="color:#000000; background:#ffffff; ">  </span>
+<span style="color:#400000; background:#ffffff; ">file_get_contents</span><span style="color:#808030; background:#ffffff; ">(</span><span style="color:#797997; background:#ffffff; ">$str</span><span style="color:#808030; background:#ffffff; ">,</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#008c00; background:#ffffff; ">0</span><span style="color:#808030; background:#ffffff; ">,</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#797997; background:#ffffff; ">$ctx</span><span style="color:#808030; background:#ffffff; ">)</span><span style="color:#800080; background:#ffffff; ">;</span><span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#000000; background:#ffffff; ">&nbsp;&nbsp;&nbsp;</span>
+<span style="color:#008c00; background:#ffffff; ">2</span><span style="color:#808030; background:#ffffff; ">,</span><span style="color:#000000; background:#ffffff; ">max_requests参数配置不当，可能会引起间歇性502错误：</span>
+<span style="color:#000000; background:#ffffff; ">pm</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">max_requests </span><span style="color:#808030; background:#ffffff; ">=</span><span style="color:#000000; background:#ffffff; "> </span><span style="color:#008c00; background:#ffffff; ">1000</span><span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#696969; background:#ffffff; ">#设置每个子进程重生之前服务的请求数. 对于可能存在内存泄漏的第三方模块来说是非常有用的. 如果设置为 '0' 则一直接受请求. 等同于 PHP_FCGI_MAX_REQUESTS 环境变量. 默认值: 0.</span><span style="color:#000000; background:#ffffff; "></span>
+<span style="color:#000000; background:#ffffff; ">这段配置的意思是，当一个 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 进程处理的请求数累积到 </span><span style="color:#008c00; background:#ffffff; ">500</span><span style="color:#000000; background:#ffffff; "> 个后，自动重启该进程。</span>
+<span style="color:#000000; background:#ffffff; ">但是为什么要重启进程呢？</span>
+<span style="color:#000000; background:#ffffff; ">一般在项目中，我们多多少少都会用到一些 PHP 的第三方库，这些第三方库经常存在内存泄漏问题，如果不定期重启 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 进程，势必造成内存使用量不断增长。因此 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">FPM 作为 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 的管理器，提供了这么一项监控功能，对请求达到指定次数的 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 进程进行重启，保证内存使用量不增长。</span>
+<span style="color:#000000; background:#ffffff; ">正是因为这个机制，在高并发的站点中，经常导致 </span><span style="color:#008c00; background:#ffffff; ">502</span><span style="color:#000000; background:#ffffff; "> 错误，我猜测原因是 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">FPM 对从 NGINX 过来的请求队列没处理好。不过我目前用的还是 PHP </span><span style="color:#008000; background:#ffffff; ">5.3</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">2，不知道在 PHP </span><span style="color:#008000; background:#ffffff; ">5.3</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#008c00; background:#ffffff; ">3</span><span style="color:#000000; background:#ffffff; "> 中是否还存在这个问题。</span>
+<span style="color:#000000; background:#ffffff; ">目前我们的解决方法是，把这个值尽量设置大些，尽可能减少 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 重新 SPAWN 的次数，同时也能提高总体性能。在我们自己实际的生产环境中发现，内存泄漏并不明显，因此我们将这个值设置得非常大（204800）。大家要根据自己的实际情况设置这个值，不能盲目地加大。</span>
+<span style="color:#000000; background:#ffffff; ">话说回来，这套机制目的只为保证 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 不过分地占用内存，为何不通过检测内存的方式来处理呢？我非常认同高春辉所说的，通过设置进程的峰值内在占用量来重启 PHP</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">CGI 进程，会是更好的一个解决方案。</span>
+<span style="color:#008c00; background:#ffffff; ">3</span><span style="color:#808030; background:#ffffff; ">,</span><span style="color:#000000; background:#ffffff; ">php</span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">fpm的慢日志，debug及异常排查神器：</span>
+<span style="color:#000000; background:#ffffff; ">request_slowlog_timeout设置一个超时的参数，slowlog设置慢日志的存放位置，tail </span><span style="color:#808030; background:#ffffff; ">-</span><span style="color:#000000; background:#ffffff; ">f </span><span style="color:#808030; background:#ffffff; ">/</span><span style="color:#800000; background:#ffffff; font-weight:bold; ">var</span><span style="color:#808030; background:#ffffff; ">/</span><span style="color:#400000; background:#ffffff; ">log</span><span style="color:#808030; background:#ffffff; ">/</span><span style="color:#000000; background:#ffffff; ">www</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">slow</span><span style="color:#808030; background:#ffffff; ">.</span><span style="color:#000000; background:#ffffff; ">log即可看到执行过慢的php过程。</span>
+<span style="color:#000000; background:#ffffff; ">大家可以看到经常出现的网络读取超过、Mysql查询过慢的问题，根据提示信息再排查问题就有很明确的方向了。</span>
+<span style="color:#5f5035; background:#ffffff; "></span>
+                                </pre></div>                        
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>FEBRUARY 24, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>
