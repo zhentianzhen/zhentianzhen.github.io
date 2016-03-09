@@ -49,12 +49,12 @@ jQuery(document).ready(function($) {
                                 <ul class="nav navbar-nav navbar-left">
                                         <li><a href="../index.html">Home</a></li>
                                         <li><a href="../php.html">Php</a></li>
-                                        <li><a href="../golang.html" class="active">Golang</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
                                         <li><a href="../mysql.html">MySQL</a></li>
                                         <li><a href="../mongodb.html">MongoDB</a></li>
                                         <li><a href="../redis.html">Redis</a></li>
                                         <li><a href="../git.html">Git</a></li>
-                                        <li><a href="../centos.html">CentOS</a></li>
+                                        <li><a href="../centos.html" class="active">CentOS</a></li>
                                         <li><a href="../other.html">Other</a></li>
                                 </ul>	
                                 <div class="clearfix"> </div>
@@ -76,78 +76,42 @@ jQuery(document).ready(function($) {
                 <div class="work-title sngl-title">
                         <ol class="breadcrumb">
                                 <li><a href="../index.html">Home</a></li>
-                                <li class="active">Golang</li>
+                                <li class="active">CentOS</li>
                         </ol>
                 </div>
                 <div class="col-md-8 single-page-left">
                         <div class="single-page-info">
-                                <h5>golang vim开发环境快速搭建</h5>
+                                <h5>centos7.x开机启动服务</h5>
                                 <div style="width: 100%;">
-                                        <pre style="color:#000000;background:#ffffff;">git <span style="color:#400000; ">clone</span> <span style="color:#005fd2; ">https</span>:<span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>github<span style="color:#808030; ">.</span>com<span style="color:#808030; ">/</span>VundleVim<span style="color:#808030; ">/</span>Vundle<span style="color:#808030; ">.</span>vim<span style="color:#808030; ">.</span>git <span style="color:#808030; ">~</span><span style="color:#0000e6; ">/</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">vim</span><span style="color:#800000; ">/</span>bundle<span style="color:#808030; ">/</span>Vundle<span style="color:#808030; ">.</span>vim
-vim <span style="color:#808030; ">.</span>vimrc
-
-<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>将以下内容写入
-set nocompatible              <span style="color:#0000e6; ">" be iMproved, required</span>
-<span style="color:#0000e6; ">filetype off                  "</span> required
-
-set mouse<span style="color:#808030; ">=</span>a
-<span style="color:#400000; ">map</span> &lt;F8&gt; :<span style="color:#005fd2; ">NERDTreeToggle</span>&lt;CR&gt;
-
-set nu
-:<span style="color:#005fd2; ">set</span> ts<span style="color:#808030; ">=</span><span style="color:#008c00; ">2</span>
-:<span style="color:#005fd2; ">set</span> expandtab
-:%retab!
-
-set rtp<span style="color:#808030; ">+</span><span style="color:#808030; ">=</span><span style="color:#808030; ">~</span><span style="color:#0000e6; ">/</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">vim</span><span style="color:#800000; ">/</span>bundle<span style="color:#808030; ">/</span>Vundle<span style="color:#808030; ">.</span>vim
-<span style="color:#400000; ">call</span> vundle<span style="color:#696969; ">#begin()</span>
-
-Plugin <span style="color:#0000e6; ">'VundleVim/Vundle.vim'</span>
-
-Plugin <span style="color:#0000e6; ">'https://github.com/scrooloose/nerdtree.git'</span>
-
-Plugin <span style="color:#0000e6; ">'fatih/vim-go'</span>
-
-Plugin <span style="color:#0000e6; ">'https://github.com/ervandew/supertab.git'</span>
-
-Plugin <span style="color:#0000e6; ">'https://github.com/Valloric/YouCompleteMe.git'</span>
-
-<span style="color:#400000; ">call</span> vundle<span style="color:#696969; ">#end()            " required</span>
-filetype plugin indent on    <span style="color:#0000e6; ">" required</span>
-<span style="color:#0000e6; "></span>
-<span style="color:#0000e6; "></span>
-<span style="color:#0000e6; ">"</span> All of your Plugins must be added before the following line
-<span style="color:#400000; ">call</span> vundle<span style="color:#696969; ">#end()            " required</span>
-filetype plugin indent on    <span style="color:#0000e6; ">" required</span>
-<span style="color:#0000e6; ">"</span> To ignore plugin indent changes<span style="color:#808030; ">,</span> instead use:
-<span style="color:#0000e6; ">"filetype plugin on</span>
-<span style="color:#0000e6; ">"</span>
-<span style="color:#0000e6; ">" Brief help</span>
-<span style="color:#0000e6; ">"</span> :<span style="color:#005fd2; ">PluginList</span>       <span style="color:#808030; ">-</span> lists configured plugins
-<span style="color:#0000e6; ">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span>
-<span style="color:#0000e6; ">"</span> :<span style="color:#005fd2; ">PluginSearch</span> foo <span style="color:#808030; ">-</span> searches <span style="color:#800000; font-weight:bold; ">for</span> foo; append <span style="color:#0000e6; ">`!`</span> to refresh <span style="color:#400000; ">local</span> cache
-<span style="color:#0000e6; ">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span>
-<span style="color:#0000e6; ">"</span>
-<span style="color:#0000e6; ">" see :h vundle for more details or wiki for FAQ</span>
-<span style="color:#0000e6; ">"</span> Put your non<span style="color:#808030; ">-</span>Plugin stuff after this line
+                                        <pre style="color:#000000;background:#ffffff;">vim <span style="color:#808030; ">/</span>lib<span style="color:#808030; ">/</span>systemd<span style="color:#808030; ">/</span>system<span style="color:#808030; ">/</span>nginx<span style="color:#808030; ">.</span>service
 
 
-cd <span style="color:#808030; ">~</span><span style="color:#0000e6; ">/</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">vim</span><span style="color:#800000; ">/</span>bundle
-git <span style="color:#400000; ">clone</span> <span style="color:#005fd2; ">https</span>:<span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>github<span style="color:#808030; ">.</span>com<span style="color:#808030; ">/</span>Valloric<span style="color:#808030; ">/</span>YouCompleteMe<span style="color:#808030; ">.</span>git
-cd YouCompleteMe
-git submodule <span style="color:#400000; ">update</span> <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>init <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>recursive
-yum install cmake
-yum install python<span style="color:#808030; ">-</span>devel
-<span style="color:#808030; ">.</span><span style="color:#0000e6; ">/install</span><span style="color:#808030; ">.</span><span style="color:#0000e6; ">py --clang-completer --gocode-completer</span>
-<span style="color:#0000e6; "></span>
-<span style="color:#0000e6; ">vim ~</span><span style="color:#800000; ">/</span><span style="color:#808030; ">.</span>vimrc
-添加 Plugin <span style="color:#0000e6; ">'Valloric/YouCompleteMe'</span>
 
-<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>退出再次打开<span style="color:#808030; ">.</span>vimrc执行 :<span style="color:#005fd2; ">PluginInstall</span>，完毕，so easy
-                                </pre></div>                              
+<span style="color:#808030; ">[</span>Unit<span style="color:#808030; ">]</span> 
+Description<span style="color:#808030; ">=</span>nginx  
+After<span style="color:#808030; ">=</span>network<span style="color:#808030; ">.</span>target  
+   
+<span style="color:#808030; ">[</span>Service<span style="color:#808030; ">]</span>  
+Type<span style="color:#808030; ">=</span>forking  
+ExecStart<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/usr</span><span style="color:#800000; ">/</span><span style="color:#400000; ">local</span><span style="color:#808030; ">/</span>tengine<span style="color:#808030; ">/</span>sbin<span style="color:#808030; ">/</span>nginx <span style="color:#808030; ">-</span>c <span style="color:#808030; ">/</span>usr<span style="color:#808030; ">/</span><span style="color:#400000; ">local</span><span style="color:#808030; ">/</span>tengine<span style="color:#808030; ">/</span>conf<span style="color:#808030; ">/</span>nginx<span style="color:#808030; ">.</span>conf
+ExecReload<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/usr</span><span style="color:#800000; ">/</span><span style="color:#400000; ">local</span><span style="color:#808030; ">/</span>tengine<span style="color:#808030; ">/</span>sbin<span style="color:#808030; ">/</span>nginx <span style="color:#808030; ">-</span>s reload
+ExecStop<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/usr</span><span style="color:#800000; ">/</span><span style="color:#400000; ">local</span><span style="color:#808030; ">/</span>tengine<span style="color:#808030; ">/</span>sbin<span style="color:#808030; ">/</span>nginx <span style="color:#808030; ">-</span>s <span style="color:#400000; ">stop</span>
+PrivateTmp<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>  
+   
+
+
+<span style="color:#808030; ">[</span>Install<span style="color:#808030; ">]</span>  
+WantedBy<span style="color:#808030; ">=</span>multi<span style="color:#808030; ">-</span>user<span style="color:#808030; ">.</span>target 
+
+
+
+<span style="color:#400000; ">chmod</span> <span style="color:#008c00; ">754</span> <span style="color:#808030; ">/</span>usr<span style="color:#808030; ">/</span>lib<span style="color:#808030; ">/</span>systemd<span style="color:#808030; ">/</span>system<span style="color:#808030; ">/</span>nginx<span style="color:#808030; ">.</span>service
+systemctl enable nginx<span style="color:#808030; ">.</span>service
+                                </pre></div>
                                 <div class="comment-icons">
                                         <ul>
-                                                <li><span></span><a href="#">Golang</a> </li>
-                                                <li><span class="clndr"></span>MARCH 8, 2016</li>
+                                                <li><span></span><a href="#">CentOS</a> </li>
+                                                <li><span class="clndr"></span>MARCH 9, 2016</li>
                                                 <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
                                         </ul>
                                 </div>
