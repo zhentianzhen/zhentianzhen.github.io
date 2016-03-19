@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html">Php</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html" class="active">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html" >CentOS</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">MongoDB</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>MongoDB集群配置</h5>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>replset a
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>a master
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">27017</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gama
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>a slave
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">27018</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gama
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>a vote
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">27019</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gama
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>replset b
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>b master
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">37017</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gamb
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>b slave
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">37018</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gamb
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>b vote
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">37019</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+replSet<span style="color:#808030; ">=</span>gamb
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>
+mongod <span style="color:#808030; ">-</span>f a<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f a<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f a<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f b<span style="color:#808030; ">/</span>master<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f b<span style="color:#808030; ">/</span>slave<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f b<span style="color:#808030; ">/</span>vote<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>配置replset a
+mongo
+&gt;config <span style="color:#808030; ">=</span> <span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>: <span style="color:#0000e6; ">"gama"</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">members</span>: <span style="color:#808030; ">[</span><span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>: <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">host</span>: <span style="color:#0000e6; ">"127.0.0.1:27017"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">,</span> <span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>:<span style="color:#008c00; ">1</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">host</span>: <span style="color:#0000e6; ">"127.0.0.1:27018"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">]</span><span style="color:#800080; ">}</span>
+&gt;rs<span style="color:#808030; ">.</span>initiate<span style="color:#808030; ">(</span>config<span style="color:#808030; ">)</span>
+&gt;rs<span style="color:#808030; ">.</span>addArb<span style="color:#808030; ">(</span><span style="color:#0000e6; ">"127.0.0.1:27019"</span><span style="color:#808030; ">)</span>
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>配置replset b
+mongo <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>port <span style="color:#008c00; ">37017</span>
+&gt;config <span style="color:#808030; ">=</span> <span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>: <span style="color:#0000e6; ">"gamb"</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">members</span>: <span style="color:#808030; ">[</span><span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>: <span style="color:#008c00; ">0</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">host</span>: <span style="color:#0000e6; ">"127.0.0.1:37017"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">,</span> <span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>:<span style="color:#008c00; ">1</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">host</span>: <span style="color:#0000e6; ">"127.0.0.1:37018"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">]</span><span style="color:#800080; ">}</span>
+&gt;rs<span style="color:#808030; ">.</span>initiate<span style="color:#808030; ">(</span>config<span style="color:#808030; ">)</span>
+&gt;rs<span style="color:#808030; ">.</span>addArb<span style="color:#808030; ">(</span><span style="color:#0000e6; ">"127.0.0.1:37019"</span><span style="color:#808030; ">)</span>
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngos 配置
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">co</span>nfigdb a
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">40000</span>
+configsvr <span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">true</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">co</span>nfigdb b
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">40001</span>
+configsvr <span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">true</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">co</span>nfigdb c
+logpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>c<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>log
+logappend<span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span><span style="color:#808030; ">=</span><span style="color:#800000; font-weight:bold; ">true</span>
+port<span style="color:#808030; ">=</span><span style="color:#008c00; ">40002</span>
+configsvr <span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">true</span>
+dbpath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>c<span style="color:#808030; ">/</span>data
+pidfilepath<span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>configdb<span style="color:#808030; ">/</span>c<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span><span style="color:#400000; ">pid</span>
+storageEngine<span style="color:#808030; ">=</span>wiredTiger
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>
+mongod <span style="color:#808030; ">-</span>f configdb<span style="color:#808030; ">/</span>a<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f configdb<span style="color:#808030; ">/</span>b<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+mongod <span style="color:#808030; ">-</span>f configdb<span style="color:#808030; ">/</span>c<span style="color:#808030; ">/</span>mongod<span style="color:#808030; ">.</span>conf
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngos config
+configdb <span style="color:#808030; ">=</span> <span style="color:#008000; ">127.0</span><span style="color:#808030; ">.</span><span style="color:#008000; ">0.1</span>:<span style="color:#005fd2; ">40000</span><span style="color:#808030; ">,</span><span style="color:#008000; ">127.0</span><span style="color:#808030; ">.</span><span style="color:#008000; ">0.1</span>:<span style="color:#005fd2; ">40001</span><span style="color:#808030; ">,</span><span style="color:#008000; ">127.0</span><span style="color:#808030; ">.</span><span style="color:#008000; ">0.1</span>:<span style="color:#005fd2; ">40002</span>
+port <span style="color:#808030; ">=</span> <span style="color:#008c00; ">27016</span>
+chunkSize <span style="color:#808030; ">=</span> <span style="color:#008c00; ">100</span>
+logpath <span style="color:#808030; ">=</span><span style="color:#0000e6; ">/data</span><span style="color:#800000; ">/</span><span style="color:#800000; font-weight:bold; ">mo</span>ngo<span style="color:#808030; ">/</span>cluster<span style="color:#808030; ">/</span>mongos<span style="color:#808030; ">/</span>mongos<span style="color:#808030; ">.</span>log
+logappend <span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">true</span>
+<span style="color:#400000; ">fork</span> <span style="color:#808030; ">=</span> <span style="color:#800000; font-weight:bold; ">true</span>
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span><span style="color:#808030; ">/</span>
+mongos <span style="color:#808030; ">-</span>f mongos<span style="color:#808030; ">/</span>mongos<span style="color:#808030; ">.</span>conf
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>配置shard
+mongo <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>port <span style="color:#008c00; ">27016</span>
+&gt;use admin
+&gt;db<span style="color:#808030; ">.</span>runCommand<span style="color:#808030; ">(</span><span style="color:#800080; ">{</span><span style="color:#005fd2; ">addShard</span>: <span style="color:#0000e6; ">"gama/127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019"</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">name</span>: <span style="color:#0000e6; ">"gama"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
+&gt;db<span style="color:#808030; ">.</span>runCommand<span style="color:#808030; ">(</span><span style="color:#800080; ">{</span><span style="color:#005fd2; ">addShard</span>: <span style="color:#0000e6; ">"gamb/127.0.0.1:37017,127.0.0.1:37018,127.0.0.1:37019"</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">name</span>: <span style="color:#0000e6; ">"gamb"</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
+&gt;sh<span style="color:#808030; ">.</span><span style="color:#400000; ">status</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>搭建完毕
+
+<span style="color:#0000e6; ">/</span><span style="color:#800000; ">/</span>test
+&gt;use game
+&gt;sh<span style="color:#808030; ">.</span>enableSharding<span style="color:#808030; ">(</span><span style="color:#0000e6; ">"game"</span><span style="color:#808030; ">)</span>
+&gt;db<span style="color:#808030; ">.</span>game<span style="color:#808030; ">.</span>players<span style="color:#808030; ">.</span><span style="color:#400000; ">insert</span><span style="color:#808030; ">(</span><span style="color:#800080; ">{</span><span style="color:#005fd2; ">name</span>: <span style="color:#0000e6; ">"test"</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">level</span>: <span style="color:#008c00; ">12</span><span style="color:#808030; ">,</span> <span style="color:#005fd2; ">status</span>:<span style="color:#008c00; ">1</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
+&gt;sh<span style="color:#808030; ">.</span>shardCollection<span style="color:#808030; ">(</span><span style="color:#0000e6; ">"game.players"</span><span style="color:#808030; ">,</span> <span style="color:#800080; ">{</span><span style="color:#005fd2; ">_id</span>:<span style="color:#008c00; ">1</span><span style="color:#800080; ">}</span><span style="color:#808030; ">)</span>
+                                </pre></div>                         
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>MARCH 19, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>

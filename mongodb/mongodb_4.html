@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zhentianzhen's Blog</title>
+<link href="../stylesheets/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="../stylesheets/style.css" type="text/css" rel="stylesheet" media="all">
+<!--web-font-->
+<link href='http://fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="../javascripts/jquery.min.js"></script>  
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="../javascripts/move-top.js"></script>
+<script type="text/javascript" src="../javascripts/easing.js"></script>	
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){		
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                        });
+                });
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+<!--navigation-->
+<div class="top-nav">
+        <nav class="navbar navbar-default">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="../index.html">Home</a></li>
+                                        <li><a href="../php.html">Php</a></li>
+                                        <li><a href="../golang.html">Golang</a></li>
+                                        <li><a href="../mysql.html">MySQL</a></li>
+                                        <li><a href="../mongodb.html" class="active">MongoDB</a></li>
+                                        <li><a href="../redis.html">Redis</a></li>
+                                        <li><a href="../git.html">Git</a></li>
+                                        <li><a href="../centos.html" >CentOS</a></li>
+                                        <li><a href="../other.html">Other</a></li>
+                                </ul>	
+                                <div class="clearfix"> </div>
+                        </div>
+                </div>	
+        </nav>		
+</div>	
+
+<!--navigation-->
+<!--header-->
+<div class="header">
+        <div class="container">
+        </div>	
+</div>
+<!--//header-->
+<!--single-page-->
+<div class="single-page">
+        <div class="container">
+                <div class="work-title sngl-title">
+                        <ol class="breadcrumb">
+                                <li><a href="../index.html">Home</a></li>
+                                <li class="active">MongoDB</li>
+                        </ol>
+                </div>
+                <div class="col-md-8 single-page-left">
+                        <div class="single-page-info">
+                                <h5>MongoDB角色大全</h5>
+                                <div style="width: 100%;">
+                                        <pre style="color:#000000;background:#ffffff;"><span style="color:#008c00; ">1</span><span style="color:#808030; ">.</span> read角色
+
+数据库的只读权限，包括：
+
+aggregate<span style="color:#808030; ">,</span>checkShardingIndex<span style="color:#808030; ">,</span>cloneCollectionAsCapped<span style="color:#808030; ">,</span>collStats<span style="color:#808030; ">,</span><span style="color:#400000; ">count</span><span style="color:#808030; ">,</span>dataSize<span style="color:#808030; ">,</span>dbHash<span style="color:#808030; ">,</span>dbStats<span style="color:#808030; ">,</span>distinct<span style="color:#808030; ">,</span>filemd5，mapReduce <span style="color:#808030; ">(</span>inline output only<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>text <span style="color:#808030; ">(</span>beta feature<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span>geoNear<span style="color:#808030; ">,</span>geoSearch<span style="color:#808030; ">,</span>geoWalk<span style="color:#808030; ">,</span><span style="color:#400000; ">group</span> 
+<span style="color:#008c00; ">
+2</span><span style="color:#808030; ">.</span> readWrite角色
+
+数据库的读写权限，包括：
+
+read角色的所有权限
+
+cloneCollection <span style="color:#808030; ">(</span>as the target database<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>convertToCapped，create <span style="color:#808030; ">(</span><span style="color:#800000; font-weight:bold; ">and</span> to create collections implicitly<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span>，renameCollection <span style="color:#808030; ">(</span>within the same database<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span>findAndModify<span style="color:#808030; ">,</span>mapReduce <span style="color:#808030; ">(</span>output to a collection<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span> 
+<span style="color:#400000; ">drop</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>dropIndexes<span style="color:#808030; ">,</span>emptycapped<span style="color:#808030; ">,</span>ensureIndex<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> 
+<span style="color:#008c00; ">
+3</span><span style="color:#808030; ">.</span> dbAdmin角色
+
+数据库的管理权限，包括：
+
+clean<span style="color:#808030; ">,</span>collMod<span style="color:#808030; ">,</span>collStats<span style="color:#808030; ">,</span><span style="color:#400000; ">compact</span><span style="color:#808030; ">,</span>convertToCappe 
+create<span style="color:#808030; ">,</span>db<span style="color:#808030; ">.</span>createCollection<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>dbStats<span style="color:#808030; ">,</span><span style="color:#400000; ">drop</span><span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>dropIndexes 
+ensureIndex<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>，indexStats<span style="color:#808030; ">,</span>profile<span style="color:#808030; ">,</span>reIndex 
+renameCollection <span style="color:#808030; ">(</span>within a single database<span style="color:#808030; ">.</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>validate 
+<span style="color:#008c00; ">
+4</span><span style="color:#808030; ">.</span> userAdmin角色
+
+数据库的用户管理权限
+
+<span style="color:#008c00; ">
+5</span><span style="color:#808030; ">.</span> clusterAdmin角色
+
+集群管理权限<span style="color:#808030; ">(</span>副本集、分片、主从等相关管理<span style="color:#808030; ">)</span>，包括：
+
+addShard<span style="color:#808030; ">,</span>closeAllDatabases<span style="color:#808030; ">,</span>connPoolStats<span style="color:#808030; ">,</span>connPoolSync<span style="color:#808030; ">,</span>_cpuProfilerStart_cpuProfilerStop<span style="color:#808030; ">,</span>cursorInfo<span style="color:#808030; ">,</span>diagLogging<span style="color:#808030; ">,</span>dropDatabase 
+shardingState<span style="color:#808030; ">,</span>shutdown<span style="color:#808030; ">,</span>splitChunk<span style="color:#808030; ">,</span>splitVector<span style="color:#808030; ">,</span><span style="color:#400000; ">split</span><span style="color:#808030; ">,</span>top<span style="color:#808030; ">,</span>touchresync 
+serverStatus<span style="color:#808030; ">,</span>setParameter<span style="color:#808030; ">,</span>setShardVersion<span style="color:#808030; ">,</span>shardCollection 
+replSetMaintenance<span style="color:#808030; ">,</span>replSetReconfig<span style="color:#808030; ">,</span>replSetStepDown<span style="color:#808030; ">,</span>replSetSyncFrom 
+repairDatabase<span style="color:#808030; ">,</span>replSetFreeze<span style="color:#808030; ">,</span>replSetGetStatus<span style="color:#808030; ">,</span>replSetInitiate 
+logRotate<span style="color:#808030; ">,</span>moveChunk<span style="color:#808030; ">,</span>movePrimary<span style="color:#808030; ">,</span>netstat<span style="color:#808030; ">,</span>removeShard<span style="color:#808030; ">,</span>unsetSharding 
+hostInfo<span style="color:#808030; ">,</span>db<span style="color:#808030; ">.</span>currentOp<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>db<span style="color:#808030; ">.</span>killOp<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span>listDatabases<span style="color:#808030; ">,</span>listShardsgetCmdLineOpts<span style="color:#808030; ">,</span>getLog<span style="color:#808030; ">,</span>getParameter<span style="color:#808030; ">,</span>getShardMap<span style="color:#808030; ">,</span>getShardVersion 
+enableSharding<span style="color:#808030; ">,</span>flushRouterConfig<span style="color:#808030; ">,</span><span style="color:#400000; ">fsync</span><span style="color:#808030; ">,</span>db<span style="color:#808030; ">.</span>fsyncUnlock<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span> 
+<span style="color:#008c00; ">
+6</span><span style="color:#808030; ">.</span> readAnyDatabase角色
+
+任何数据库的只读权限<span style="color:#808030; ">(</span>和read相似<span style="color:#808030; ">)</span>
+
+<span style="color:#008c00; ">7</span><span style="color:#808030; ">.</span> readWriteAnyDatabase角色
+
+任何数据库的读写权限<span style="color:#808030; ">(</span>和readWrite相似<span style="color:#808030; ">)</span>
+
+<span style="color:#008c00; ">8</span><span style="color:#808030; ">.</span> userAdminAnyDatabase角色
+
+任何数据库用户的管理权限<span style="color:#808030; ">(</span>和userAdmin相似<span style="color:#808030; ">)</span>
+
+<span style="color:#008c00; ">9</span><span style="color:#808030; ">.</span> dbAdminAnyDatabase角色
+
+任何数据库的管理权限<span style="color:#808030; ">(</span>dbAdmin相似<span style="color:#808030; ">)</span>
+                                </pre></div>                              
+                                <div class="comment-icons">
+                                        <ul>
+                                                <li><span></span><a href="#">Golang</a> </li>
+                                                <li><span class="clndr"></span>MARCH 19, 2016</li>
+                                                <li><span class="admin"></span> <a href="#">Zhentianzhen</a></li>
+                                        </ul>
+                                </div>
+                        </div>	
+                </div>	
+                <div class="col-md-4 single-page-right">
+                        <div class="category">
+                                <h4>Categories</h4>
+                                <div class="list-group">
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Dapibus ac facilisis in</a>
+                                        <a href="singlepage.html" class="list-group-item">Morbi leo risus</a>
+                                        <a href="singlepage.html" class="list-group-item">Porta ac consectetur ac</a>
+                                        <a href="singlepage.html" class="list-group-item">Vestibulum at eros</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                        <a href="singlepage.html" class="list-group-item">Cras justo odio</a>
+                                </div>
+                        </div>	
+                </div>
+                <div class="clearfix"> </div>
+        </div>	
+</div>
+<!--//single-page-->
+<!--footer-->
+<div class="copy-right">
+        <div class="container">
+                <p>Copyright &copy; 2016.Zhentianzhen All rights reserved.</p>
+        </div>
+</div>
+<!--//footer-->
+<!--smooth-scrolling-of-move-up-->
+<script type="text/javascript">
+$(document).ready(function() {
+                /*
+                   var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear' 
+};
+                 */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!--//smooth-scrolling-of-move-up-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../javascripts/bootstrap.js"></script>
+</body>
+</html>
